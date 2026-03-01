@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>数字时钟</title>
+  <style>
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: "JetBrains Mono", "SFMono-Regular", Consolas, monospace;
+    }
+
+    #clock {
+      font-size: clamp(2.5rem, 10vw, 6rem);
+      letter-spacing: 0.08em;
+      font-weight: 700;
+    }
+  </style>
+</head>
+<body>
+  <div id="clock" aria-live="polite">00:00:00</div>
+
+  <script>
+    const clockEl = document.getElementById("clock");
+
+    function updateClock() {
+      const now = new Date();
+      const time = now.toLocaleTimeString("zh-CN", { hour12: false });
+      clockEl.textContent = time;
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+</body>
+</html>
